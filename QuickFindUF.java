@@ -5,12 +5,17 @@ public class QuickFindUF
 {
     static Scanner sc;
     private int[] id;
+    private int[] sz;
     
     public QuickFindUF(int N)
     {
         id = new int[N];
+        sz = new int[N];
         for (int i = 0; i < N; i++)
+        {
             id[i] = i;
+            sz[i] = 1;
+        }
     }
 
     // It takes N 2 array accesses to process a sequence of N union commands on N objects.
@@ -48,7 +53,18 @@ public class QuickFindUF
     {
         int i = root(p);
         int j = root(q);
-        id[i] = j;
+        if (i == j)
+            return;
+        if (sz[i] < sz[j])
+        {
+            id[i] = j;
+            sz[j] += sz[i];
+        }
+        else
+        {
+            id[j] = i;
+            sz[i] += sz[j];
+        }
     }
 
     public static void main(String[] args)
