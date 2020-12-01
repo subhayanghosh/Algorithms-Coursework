@@ -47,19 +47,13 @@ public class FindLargestUF
         {
             id[i] = j;
             sz[j] += sz[i];
-            if (l[i] > l[j])
-                l[j] = l[i];
-            else
-                l[i] = l[j];
+            l[i] = l[j] = l[i] > l[j] ? l[i] : l[j];
         }
         else
         {
             id[j] = i;
             sz[i] += sz[j];
-            if (l[i] > l[j])
-                l[j] = l[i];
-            else
-                l[i] = l[j];
+            l[i] = l[j] = l[i] > l[j] ? l[i] : l[j];
         }
     }
 
